@@ -47,9 +47,15 @@ public class GetMeteo extends AppCompatActivity {
         callAsync.enqueue(new Callback<FullWeather>() {
             @Override
             public void onResponse(Call<FullWeather> call, Response<FullWeather> response) {
+
+                if (response.body() == null) {
+                    Log.d(TAG, "onResponseQueryNull: "+"veuillez entrer une ville");
+                    return;
+
+                }
+
                 FullWeather fullWeather = response.body();
                 List<WeatherInfos> wheatherInfosList = fullWeather.getWeatherInfosList();
-
                 if (fullWeather != null){
                     for (WeatherInfos weatherElt : wheatherInfosList){
                         Log.d(TAG, "onResponse: "+ weatherElt.getDescription()+" " +weatherElt.getMain()+" "+ weatherElt.getIcon()+" "+response.raw());
