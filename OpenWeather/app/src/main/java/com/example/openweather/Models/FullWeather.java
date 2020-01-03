@@ -32,6 +32,9 @@ public class FullWeather {
         @SerializedName("name")
         @Expose
         private String name;
+        @SerializedName("Sys")
+        @Expose
+        private Sys sys;
 
 
         public Coord getCoord() {
@@ -40,6 +43,13 @@ public class FullWeather {
 
         public void setCoord(Coord coord) {
             this.coord = coord;
+        }
+
+        public Sys getSys(){
+            return sys;
+        }
+        public void  setSys(Sys sys){
+            this.sys = sys;
         }
 
         public List<WeatherInfos> getWeatherInfosList() {
