@@ -13,7 +13,7 @@ public class FullWeather {
         private Coord coord;
         @SerializedName("weather")
         @Expose
-        private List<WeatherInfos> weatherInfosList = null;
+        private List<WeatherInfos> weatherInfosList ;
         @SerializedName("base")
         @Expose
         private String base;

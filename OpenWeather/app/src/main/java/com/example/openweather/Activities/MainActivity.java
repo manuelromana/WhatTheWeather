@@ -5,13 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.openweather.R;
+import com.squareup.picasso.Picasso;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button getMeteoButton;
     private EditText searchText;
+    private ImageView image;
 
 
     @Override
@@ -28,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
 
         this.getMeteoButton = (Button) findViewById(R.id.GetData);
         this.searchText = (EditText) findViewById(R.id.CityName);
+        this.image = (ImageView) findViewById(R.id.imageView2);
+
+        String imageUri = "https://openweathermap.org/img/wn/10d@2x.png";
+
+        Picasso.with(this).load(imageUri).into(image);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);

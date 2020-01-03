@@ -57,12 +57,14 @@ public class GetMeteo extends AppCompatActivity {
                 FullWeather fullWeather = response.body();
                 List<WeatherInfos> wheatherInfosList = fullWeather.getWeatherInfosList();
                 if (fullWeather != null){
-                    for (WeatherInfos weatherElt : wheatherInfosList){
+                    /*for (WeatherInfos weatherElt : wheatherInfosList){
                         Log.d(TAG, "onResponse: "+ weatherElt.getDescription()+" " +weatherElt.getMain()+" "+ weatherElt.getIcon()+" "+response.raw());
 
                         TextView resultText = (TextView) findViewById(R.id.meteo);
                         resultText.setText(weatherElt.getDescription());
-                    }
+                    }*/
+                    TextView resultText = (TextView) findViewById(R.id.meteo);
+                    resultText.setText(wheatherInfosList.get(0).getDescription()) ;
                 }else{
                     Log.d(TAG, "onResponse: "+response.raw());
 
