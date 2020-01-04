@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name="com.example.WhatsTheWeather.Activities.GetMeteo"></activity>
+        <activity android:name="com.example.WhatsTheWeather.Activities.GetMeteo">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
         <activity android:name="com.example.WhatsTheWeather.Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

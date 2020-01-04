@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">WhatsTheWeather</string>
+    <string name="app_name" translatable="false">WhatsTheWeather</string>
+    <string name="GetMeteo">GetMeteo</string>
+    <string name="CityList">MyCityList</string>
 </resources>
