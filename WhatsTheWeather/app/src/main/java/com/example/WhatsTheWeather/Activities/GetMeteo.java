@@ -37,14 +37,15 @@ public class GetMeteo extends AppCompatActivity implements SearchView.OnQueryTex
     private EditText searchText;
     private ImageView image;
     private SearchView searchView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_meteo);
 
         /*
-        * code pour button action et afficher image pas utilisé pour le moment
-        * */
+         * code pour button action et afficher image pas utilisé pour le moment
+         * */
 
         /*this.getMeteoButton = (Button) findViewById(R.id.GetData);
         this.searchText = (EditText) findViewById(R.id.CityName);
@@ -63,7 +64,7 @@ public class GetMeteo extends AppCompatActivity implements SearchView.OnQueryTex
         });*/
         //String cityName = getIntent().getStringExtra("cityName");
 
-      SearchView searchView= (SearchView) findViewById(R.id.simple_search); // inititate a search view
+        SearchView searchView = (SearchView) findViewById(R.id.simple_search); // inititate a search view
 
 
         searchView.setOnQueryTextListener(this);
@@ -72,10 +73,9 @@ public class GetMeteo extends AppCompatActivity implements SearchView.OnQueryTex
     }
 
 
-
     @Override
     public boolean onQueryTextSubmit(String query) {
-       getDatasWithRetrofit(query);
+        getDatasWithRetrofit(query);
         return true;
     }
 
@@ -103,36 +103,33 @@ public class GetMeteo extends AppCompatActivity implements SearchView.OnQueryTex
         }
     }*/
 
-    private void getDatasWithRetrofit (String cityName){
+    private void getDatasWithRetrofit(String cityName) {
 
 
         WeatherService service = RetrofitClientInstance.getRetrofitInstance().create(WeatherService.class);
-        Call<ListForecast> callAsync = service.getForecast(cityName,"cb9b73946c744e86f5c069c97e42af61");
+        Call<ListForecast> callAsync = service.getForecast(cityName, "cb9b73946c744e86f5c069c97e42af61");
 
         callAsync.enqueue(new Callback<ListForecast>() {
             @Override
             public void onResponse(Call<ListForecast> call, Response<ListForecast> response) {
 
                 if (response.body() == null) {
-                    Log.d(TAG, "onResponseQueryNull: "+"veuillez entrer une ville");
+                    Log.d(TAG, "onResponseQueryNull: " + "veuillez entrer une ville");
                     return;
 
                 }
                 ListForecast responseList = response.body();
 
 
-
-                if (responseList!= null){
-
+                if (responseList != null) {
 
 
-                        Log.d(TAG, "onResponse: "+ responseList.getWeather().get(2).getMain().getTemp());
+                    Log.d(TAG, "onResponse: " + responseList.getWeather().get(2).getMain().getTemp());
                     return;
 
 
-
-                }else{
-                    Log.d(TAG, "onResponse: "+response.raw());
+                } else {
+                    Log.d(TAG, "onResponse: " + response.raw());
 
                 }
 

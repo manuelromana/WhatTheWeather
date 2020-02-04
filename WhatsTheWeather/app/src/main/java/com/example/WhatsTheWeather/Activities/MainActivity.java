@@ -53,8 +53,8 @@ private static final String TAG = "meteoactivity";
             case R.id.action_get_meteo:
                 startActivityGetMeteo("test");
                 return true;
-            case R.id.action_city_list:
-
+            case R.id.action_search:
+    startActivitySearch();
                 return true;
 
 
@@ -72,6 +72,11 @@ private static final String TAG = "meteoactivity";
     private void startActivityGetMeteo(String cityName ){
         Intent intent = new Intent(this, GetMeteo.class);
         intent.putExtra("cityName", cityName);
+        startActivity(intent);
+    }
+    private void startActivitySearch( ){
+        Intent intent = new Intent(this, search.class);
+
         startActivity(intent);
     }
 }
