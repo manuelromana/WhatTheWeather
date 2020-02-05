@@ -35,38 +35,35 @@ public class search extends AppCompatActivity {
 
     private List<String> testlist = new ArrayList<>();
 
+    private RecyclerView recyclerViewDay;
+    private RecyclerView.Adapter mAdapterDay;
+    private RecyclerView.LayoutManager layoutManagerDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-            forecastDisplayList = new ArrayList<>();
+        //display list temp of the day
+        forecastDisplayList = new ArrayList<>();
 
-            Log.d(TAG, "toto" );
-            Log.d(TAG,"size"+forecastDisplayList.size());
-            recyclerView = (RecyclerView) findViewById(R.id.listForcast);
-            recyclerView.setHasFixedSize(true);
-            // use this setting to improve performance if you know that changes
-            // in content do not change the layout size of the RecyclerView
+        Log.d(TAG, "toto");
+        Log.d(TAG, "size" + forecastDisplayList.size());
+        recyclerView = (RecyclerView) findViewById(R.id.listForcast);
+        recyclerView.setHasFixedSize(true);
 
 
-            // use a linear layout manager
-
-            layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         //layoutManager = new LinearLayoutManager(this);
-            recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(layoutManager);
 
-            // specify an adapter (see also next example)
+        // specify an adapter (see also next example)
 
-            mAdapter = new MyAdapter( (ArrayList<ForecastDisplay>) forecastDisplayList);
-            recyclerView.setAdapter(mAdapter);
-
-
+        mAdapter = new MyAdapter((ArrayList<ForecastDisplay>) forecastDisplayList);
+        recyclerView.setAdapter(mAdapter);
 
 
     }
-
 
 
     public void getMeteo(View view) {
@@ -79,7 +76,7 @@ public class search extends AppCompatActivity {
 
     private String getDatasWithRetrofit(String cityName) {
 
-         final WheatherForecast wheatherForecastToAdd;
+        final WheatherForecast wheatherForecastToAdd;
 
         WeatherService service = RetrofitClientInstance.getRetrofitInstance().create(WeatherService.class);
         Call<ListForecast> callAsync = service.getForecast(cityName, "cb9b73946c744e86f5c069c97e42af61");
@@ -97,38 +94,40 @@ public class search extends AppCompatActivity {
                 List<WheatherForecast> responseList = response.body().getWeather();
 
 
-
                 if (responseList != null) {
-
-                          for (WheatherForecast wheatherForecast:responseList){
-
-
-                              //Log.d(TAG,wheatherForecast.getDtTxt());
-
-
-                              ForecastDisplay forecastDisplay = new ForecastDisplay();
-                            forecastDisplay.setTemp(wheatherForecast.getMain().getTemp().toString());
-                              try {
-                                  Date  dateFormat = Utils.StrDateToDateObj(wheatherForecast.getDtTxt());
-                                  String time = Utils.ObjDateToTimeStr(dateFormat);
-                                  forecastDisplay.setDate(time+"h");
-                                  System.out.println(time);
-
-                              } catch (Exception e) {
-                                  e.printStackTrace();
-                              }
-
-                            forecastDisplayList.add(forecastDisplay);
+                    //clean list before add
+                    forecastDisplayList.clear();
+                    // boucle pour les température
+                    for (WheatherForecast wheatherForecast : responseList) {
 
 
-                          }
+                        //Log.d(TAG,wheatherForecast.getDtTxt());
+                        //Log.d(TAG, wheatherForecast.getMain().getTemp().toString());
 
-                mAdapter.notifyDataSetChanged();
+                        ForecastDisplay forecastDisplay = new ForecastDisplay(); //cration d'un objet pour le display
+
+                        forecastDisplay.setTemp(wheatherForecast.getMain().getTemp().toString());
+
+                        try {
+                            Date dateFormat = Utils.StrDateToDateObj(wheatherForecast.getDtTxt());
+                            String time = Utils.ObjDateToTimeStr(dateFormat);
+                            forecastDisplay.setDate(time + "h");
+                            Log.d(TAG, time);
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
 
+                        forecastDisplayList.add(forecastDisplay);
 
 
-                    return ;
+                    }
+
+                    mAdapter.notifyDataSetChanged();
+
+
+                    return;
 
 
                 } else {
