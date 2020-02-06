@@ -107,7 +107,7 @@ public class GetMeteo extends AppCompatActivity implements SearchView.OnQueryTex
 
 
         WeatherService service = RetrofitClientInstance.getRetrofitInstance().create(WeatherService.class);
-        Call<ListForecast> callAsync = service.getForecast(cityName, "cb9b73946c744e86f5c069c97e42af61");
+        Call<ListForecast> callAsync = service.getForecast(cityName, "cb9b73946c744e86f5c069c97e42af61","metric");
 
         callAsync.enqueue(new Callback<ListForecast>() {
             @Override

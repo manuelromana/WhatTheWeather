@@ -31,10 +31,12 @@ import java.util.List;
             // each data item is just a string in this case
             public TextView textView;
             public TextView textView2;
+            public TextView textViewCelcius;
             public MyViewHolder(View v) {
                 super(v);
                 textView = v.findViewById(R.id.textView2);
                 textView2 = v.findViewById(R.id.textView3);
+                textViewCelcius = v.findViewById(R.id.textViewCelcius);
             }
         }
 
@@ -66,8 +68,9 @@ import java.util.List;
                 return;
             }*/
 
-            holder.textView.setText("temp : "+listData.get(position).getTemp());
-            holder.textView2.setText(listData.get(position).getDate());
+            holder.textView.setText("°F : "+listData.get(position).getTemp());
+            holder.textViewCelcius.setText("°C : "+listData.get(position).getTemp_celsius());
+            holder.textView2.setText(listData.get(position).getDate()+"h"); //change to get Hour
 
         }
 
