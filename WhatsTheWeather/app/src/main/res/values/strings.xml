@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name" translatable="false">WhatsTheWeather</string>
+    <string name="GetMeteo">GetMeteo</string>
+    <string name="CityList">MyCityList</string>
+    <string name="input_city">entrez une ville</string>
+    <string name="button_name">search</string>
+</resources>

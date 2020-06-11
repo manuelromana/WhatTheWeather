@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:orientation="vertical" >
+    <EditText
+        android:id="@+id/city_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
+
+    <include android:id="@+id/include1"
+        layout="@layout/day_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        ></include>
+    <include android:id="@+id/include2"
+        layout="@layout/day_info_2_wind_pressure"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        ></include>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listForcast"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_day"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+
+
+        />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:id="@+id/send"
+        android:onClick="getMeteo"
+        android:text="@string/button_name"
+        />
+
+</LinearLayout>
